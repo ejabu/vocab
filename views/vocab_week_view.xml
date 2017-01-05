@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <record model="ir.actions.act_window" id="vocab_week_action">
-            <field name="name">Static resource demo</field>
+            <field name="name">Vocab Form</field>
             <field name="res_model">vocab.week</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -12,8 +12,7 @@
             </field>
         </record>
 
-        <menuitem id="sub_vocab_week" name="Week Form" parent="vole_teacher"
-            action="vocab_week_action"/>
+        <menuitem id="sub_vocab_week" name="Week Form" parent="vole_teacher" action="vocab_week_action"/>
 
         <!-- Form view for the menuitem -->
         <record id="vocab_week_form" model="ir.ui.view">
@@ -23,16 +22,23 @@
                 <form string="Static resource demo">
                     <sheet>
                         <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="published_date"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="published_date"/>
+                            </group>
+                            <group></group>
                         </group>
-                        <group>
-                        </group>
-                        </group>
+
+                        <field name="vocab_ids">
+                            <tree string="Vocabularies" editable="bottom">
+                                <field name="english"/>
+                                <field name="arabic"/>
+                            </tree>
+                        </field>
                     </sheet>
                 </form>
             </field>
         </record>
+        
     </data>
 </openerp>
