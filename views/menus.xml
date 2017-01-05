@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_vole_menu" name="Learning"/>
+
+        <menuitem id="vole_teacher" name="Teacher"
+                  parent="main_vole_menu"/>
+
+    </data>
+</openerp>
