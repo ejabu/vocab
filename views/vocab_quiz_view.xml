@@ -31,18 +31,23 @@
                                 <field name="total_question"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page string="Material Covered">
+                                <field name="line_ids">
+                                    <tree string="Vocabularies" editable="bottom">
+                                        <field name="week_id"/>
+                                        <field name="day"/>
+                                        <field name="frequency"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Assigned Students">
+                            </page>
+                        </notebook>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
 
-                        <field name="line_ids">
-                            <tree string="Vocabularies" editable="bottom">
-                                <field name="week_id"/>
-                                <field name="day"/>
-                                <field name="frequency"/>
-                            </tree>
-                        </field>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-    </data>
-</openerp>
+        </data>
+    </openerp>

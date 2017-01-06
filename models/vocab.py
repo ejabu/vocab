@@ -9,6 +9,7 @@ class vocab_week(osv.osv):
     _columns = {
         'name': fields.char(string='Name'),
         'published_date': fields.date(string='Published Date'),
+        'total_vocab': fields.integer(string='Total Vocab'),
         'vocab_ids': fields.one2many('vocab.mean', 'week_id', 'Vocabularies'),
     }
 class vocab_mean(osv.osv):
