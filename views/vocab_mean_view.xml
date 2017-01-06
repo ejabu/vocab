@@ -12,7 +12,7 @@
             </field>
         </record>
 
-        <menuitem id="sub_vocabmean" name="Vocab Mean" parent="vole_teacher"
+        <menuitem id="sub_vocabmean" name="Vocabularies" parent="vole_library"
             action="vocab_mean_action"/>
 
         <!-- Tree view for the menuitem -->

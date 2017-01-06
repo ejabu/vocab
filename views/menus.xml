@@ -6,7 +6,9 @@
         <menuitem id="main_vole_menu" name="Learning"/>
 
         <menuitem id="vole_teacher" name="Teacher"
-                  parent="main_vole_menu"/>
+                  parent="main_vole_menu" sequence="20"/>
+        <menuitem id="vole_library" name="Library"
+                  parent="main_vole_menu" sequence="10"/>
 
     </data>
 </openerp>

@@ -21,7 +21,7 @@ class vocab_quiz_line(osv.osv):
     _name = 'vocab.quiz.line'
     _description = 'Quiz to create'
     _columns = {
-        'week_id': fields.many2one('vocab.week', 'Week'),
+        'week_id': fields.many2one('vocab.week', 'Week Covered'),
         'day': fields.integer(string='Day'),
         'frequency': fields.integer(string='Frequency'),
         'quiz_id': fields.many2one('vocab.quiz', 'Quiz Id'),
