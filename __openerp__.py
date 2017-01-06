@@ -10,6 +10,8 @@
         'views/vocab_week_view.xml',
         'views/vocab_mean_view.xml',
         'views/vocab_quiz_view.xml',
+        'views/mahad_student_view.xml',
+        'views/mahad_era_view.xml',
     ],
     'demo':[
             #files containing demo data
