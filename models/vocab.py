@@ -17,6 +17,7 @@ class vocab_mean(osv.osv):
     _description = 'Form for updating Vocab weekly'
     _columns = {
         'name': fields.char(string='ID'),
+        'day': fields.integer(string='Day'),
         'english': fields.char(string='English'),
         'arabic': fields.char(string='Arabic'),
         'published_date': fields.date(string='Published Date'),

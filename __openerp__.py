@@ -9,6 +9,7 @@
         'views/menus.xml',
         'views/vocab_week_view.xml',
         'views/vocab_mean_view.xml',
+        'views/vocab_quiz_view.xml',
     ],
     'demo':[
             #files containing demo data

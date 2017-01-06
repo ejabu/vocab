@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.actions.act_window" id="vocab_week_action">
-            <field name="name">Vocab Form</field>
-            <field name="res_model">vocab.week</field>
+        <record model="ir.actions.act_window" id="vocab_quiz_action">
+            <field name="name">Quiz Form</field>
+            <field name="res_model">vocab.quiz</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Add Vocab to remember by weekly
+                <p class="oe_view_nocontent_create">Vocab Quiz
                 </p>
             </field>
         </record>
 
-        <menuitem id="sub_vocab_week" name="Weekly Form" parent="vole_teacher" action="vocab_week_action" sequence="10"/>
+        <menuitem id="sub_vocab_quiz" sequence="20" name="Quiz Form" parent="vole_teacher" action="vocab_quiz_action"/>
 
         <!-- Form view for the menuitem -->
-        <record id="vocab_week_form" model="ir.ui.view">
-            <field name="name">vocab.week.form</field>
-            <field name="model">vocab.week</field>
+        <record id="vocab_quiz_form" model="ir.ui.view">
+            <field name="name">vocab.quiz.form</field>
+            <field name="model">vocab.quiz</field>
             <field name="arch" type="xml">
                 <form string="Static resource demo">
                     <sheet>
@@ -26,14 +26,17 @@
                                 <field name="name"/>
                                 <field name="published_date"/>
                             </group>
-                            <group></group>
+                            <group>
+                                <field name="average_score"/>
+                                <field name="total_question"/>
+                            </group>
                         </group>
 
-                        <field name="vocab_ids">
+                        <field name="line_ids">
                             <tree string="Vocabularies" editable="bottom">
-                                <field name="english"/>
-                                <field name="arabic"/>
+                                <field name="week_id"/>
                                 <field name="day"/>
+                                <field name="frequency"/>
                             </tree>
                         </field>
                     </sheet>
