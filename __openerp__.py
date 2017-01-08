@@ -13,6 +13,7 @@
         'views/vocab_task_view.xml',
         'views/mahad_student_view.xml',
         'views/mahad_era_view.xml',
+        'wizard/popup_quiz_view.xml',
     ],
     'demo':[
             #files containing demo data
