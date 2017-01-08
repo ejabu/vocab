@@ -32,4 +32,5 @@ class vocab_task(osv.osv):
             # 'res_model': 'account.chart',# With . Example sale.order
             'type': 'ir.actions.act_window',
             'target': 'new',
+            'context':{'haha': 'ejaa'},
         }

@@ -22,4 +22,17 @@ class popup_quiz(osv.osv_memory):
             'type': 'ir.actions.act_window',
             'target': 'new',
             'nodestroy': False,
+            'context':{'haha': 'ejaa'},
         }
+
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context={}, toolbar=False):
+        result = super(popup_quiz, self).fields_view_get(cr, uid, view_id, view_type, context=context, toolbar=toolbar)
+        # print result;
+        import ipdb; ipdb.set_trace()
+        old = result['arch']
+        new = result['arch'].replace('Thank','HAHA').replace('DemoClass','DemoClass2')
+        result['arch']=new
+        # your modification in the view
+        # result['fields'] will give you the fields. modify it if needed
+        # result['arch'] will give you the xml architecture. modify it if needed
+        return result
