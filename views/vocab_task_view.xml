@@ -21,9 +21,9 @@
             <field name="model">vocab.task</field>
             <field name="arch" type="xml">
                 <tree create="false" edit="false" delete="false" string="Tree">
-                    <field name="quiz_id"/>
-                    <field name="era_id"/>
                     <field name="student_id"/>
+                    <field name="era_id"/>
+                    <field name="quiz_id"/>
                     <field name="done_aging"/>
                     <field name="due_date"/>
                     <field name="avg_score"/>
@@ -40,7 +40,8 @@
             <field name="arch" type="xml">
                 <form create="false" edit="false" delete="false" string="Static resource demo">
                     <header>
-                        <!-- <button name="validate" states="draft" string="Confirm Asset" type="object" class="oe_highlight"/> -->
+                        <button name="take_quiz" states="open" string="Take Quiz" type="object" class="oe_highlight"/>
+                        <button name="take_quiz" states="done" string="Take Quiz" type="object"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
