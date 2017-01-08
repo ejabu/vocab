@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="vocab_task_action">
+            <field name="name">Vocab Task</field>
+            <field name="res_model">vocab.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Add Vocab to remember by weekly
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="sub_vocab_task" name="Task" parent="vole_student"
+            action="vocab_task_action"/>
+
+        <!-- Tree view for the menuitem -->
+        <record id="vocab_task_tree" model="ir.ui.view">
+            <field name="name">vocab.task.tree</field>
+            <field name="model">vocab.task</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" string="Tree">
+                    <field name="quiz_id"/>
+                    <field name="era_id"/>
+                    <field name="student_id"/>
+                    <field name="done_aging"/>
+                    <field name="due_date"/>
+                    <field name="avg_score"/>
+                    <field name="score"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view for the menuitem -->
+        <record id="vocab_task_form" model="ir.ui.view">
+            <field name="name">vocab.task.form</field>
+            <field name="model">vocab.task</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false" string="Static resource demo">
+                    <header>
+                        <!-- <button name="validate" states="draft" string="Confirm Asset" type="object" class="oe_highlight"/> -->
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="quiz_id"/>
+                                <field name="era_id"/>
+                                <field name="student_id"/>
+                                <field name="done_aging"/>
+                                <field name="due_date"/>
+                            </group>
+                            <group>
+                                <field name="avg_score"/>
+                                <field name="score"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

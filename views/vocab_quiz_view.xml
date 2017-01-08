@@ -42,6 +42,16 @@
                                 </field>
                             </page>
                             <page string="Assigned Students">
+                                <field name="task_ids">
+                                    <tree string="Assigned" editable="bottom">
+                                        <field name="era_id"/>
+                                        <field name="student_id"/>
+                                        <field name="done_aging"/>
+                                        <field name="score"/>
+                                        <field name="remark"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                         </sheet>

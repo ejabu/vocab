@@ -8,11 +8,12 @@ class vocab_quiz(osv.osv):
     _description = 'Quiz to create'
     _columns = {
         'name': fields.char(string='ID'),
-        'average_score': fields.char(string='Average Score'),
+        'average_score': fields.integer(string='Average Score %'),
         'total_question': fields.char(string='Total Question'),
         'published_date': fields.date(string='Published Date'),
         'due_date': fields.date(string='Due Date'),
         'line_ids': fields.one2many('vocab.quiz.line', 'quiz_id', 'Material Covered'),
+        'task_ids': fields.one2many('vocab.task', 'quiz_id', 'Assigned Students'),
 
 
     }

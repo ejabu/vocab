@@ -9,8 +9,13 @@
             parent="main_vole_menu" sequence="10"/>
         <menuitem id="vole_teacher" name="Teacher"
                   parent="main_vole_menu" sequence="20"/>
+
         <menuitem id="vole_master_data" name="Master Data"
                   parent="main_vole_menu" sequence="30"/>
+
+        <menuitem id="vole_student" name="Student"
+                  parent="main_vole_menu" sequence="40"/>
+
 
     </data>
 </openerp>
