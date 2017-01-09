@@ -44,7 +44,14 @@ class vocab_task(osv.osv):
 
         week_covered_ids = list(week_covered_ids)
         vocab_covered_ids = self.pool.get('vocab.mean').search(cr, uid, [("week_id","in",week_covered_ids)])
-        import ipdb; ipdb.set_trace()
+        pass_context = {
+            'question_ids' : question_ids,
+            'week_covered_ids' : week_covered_ids,
+            'vocab_covered_ids' : vocab_covered_ids,
+            'question_index' : 1,
+            'total_question' : len(question_ids),
+        }
+        # import ipdb; ipdb.set_trace()
         # uom_obj = self.pool.get('vocab.quiz')
 
         #Generate All Possible False Options
@@ -60,16 +67,16 @@ class vocab_task(osv.osv):
         #         part = self.pool.get('res.partner').browse(cr, uid, partner_id, context=local_context)
         #         if part.lang:
 
-        return
-        # dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_quiz_form') #in model name replace . with _ Example sale.order become sale_order
-        # return {
-        #     'name':"Quiz",#Name You want to display on wizard
-        #     'view_mode': 'form',
-        #     'view_id': view_id,
-        #     'view_type': 'form',
-        #     'res_model': 'popup.quiz',# With . Example sale.order
-        #     # 'res_model': 'account.chart',# With . Example sale.order
-        #     'type': 'ir.actions.act_window',
-        #     'target': 'new',
-        #     'context':{'haha': 'ejaa'},
-        # }
+        # return
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_quiz_form')
+        return {
+            'name':"Quiz",#Name You want to display on wizard
+            'view_mode': 'form',
+            'view_id': view_id,
+            'view_type': 'form',
+            'res_model': 'popup.quiz',# With . Example sale.order
+            # 'res_model': 'account.chart',# With . Example sale.order
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            'context':pass_context,
+        }

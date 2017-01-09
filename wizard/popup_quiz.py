@@ -28,7 +28,23 @@ class popup_quiz(osv.osv_memory):
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context={}, toolbar=False):
         result = super(popup_quiz, self).fields_view_get(cr, uid, view_id, view_type, context=context, toolbar=toolbar)
         # print result;
+
+        week_covered_ids = context["week_covered_ids"]
+        vocab_covered_ids = context["vocab_covered_ids"]
+        removed_vocab_covered_ids = context["vocab_covered_ids"]
+        question_ids = context["question_ids"]
+        question_index = context["question_index"]
+        total_question = context["total_question"]
+
+        if question_index > total_question:
+            print "done"
+            return
+        import random
+        question_to_ask = question_ids[question_index-1]
         import ipdb; ipdb.set_trace()
+        removed_vocab_covered_ids.remove(question_to_ask)
+        random.shuffle(removed_vocab_covered_ids)
+        false_option = removed_vocab_covered_ids[:3]
         old = result['arch']
         new = result['arch'].replace('Thank','HAHA').replace('DemoClass','DemoClass2')
         result['arch']=new
