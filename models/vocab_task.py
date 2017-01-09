@@ -18,19 +18,58 @@ class vocab_task(osv.osv):
         'state' : fields.selection([('open', 'Open'), ('done', 'Done')], string='Status'),
 
     }
+
+
+    _defaults = {
+        'state': 'open',
+    }
     def take_quiz(self, cr, uid, ids, context=None):
         # self.write(cr, uid, ids, {'state': 'close'}, context=context)
         # return
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_quiz_form') #in model name replace . with _ Example sale.order become sale_order
+        # import ipdb; ipdb.set_trace()
+        import random;
+        current_task = self.browse(cr, uid, ids, context=None)
+        question_ids = []
+        week_covered_ids = set()
+        for quiz_line in current_task.quiz_id.line_ids:
+            week_id = quiz_line.week_id
+            week_covered_ids.add(week_id.id)
+            day = quiz_line.day
+            frequency = quiz_line.frequency
+            vocab_options = week_id.vocab_ids.filtered(lambda r: r.day == day)
+            for i in range(0,frequency):
+                rand_index = random.randint(1,len(vocab_options))
+                chosen_vocab_id = vocab_options[rand_index-1].id
+                question_ids.append(chosen_vocab_id)
+
+        week_covered_ids = list(week_covered_ids)
+        vocab_covered_ids = self.pool.get('vocab.mean').search(cr, uid, [("week_id","in",week_covered_ids)])
         import ipdb; ipdb.set_trace()
-        return {
-            'name':"Quiz",#Name You want to display on wizard
-            'view_mode': 'form',
-            'view_id': view_id,
-            'view_type': 'form',
-            'res_model': 'popup.quiz',# With . Example sale.order
-            # 'res_model': 'account.chart',# With . Example sale.order
-            'type': 'ir.actions.act_window',
-            'target': 'new',
-            'context':{'haha': 'ejaa'},
-        }
+        # uom_obj = self.pool.get('vocab.quiz')
+
+        #Generate All Possible False Options
+
+
+
+        # company_id = company_id or False
+        # local_context = dict(context, company_id=company_id, force_company=company_id, pricelist=pricelist_id)
+        #
+        # if not product:
+        #     return {'value': {'price_unit': 0.0}, 'domain':{'product_uom':[]}}
+        #     if partner_id:
+        #         part = self.pool.get('res.partner').browse(cr, uid, partner_id, context=local_context)
+        #         if part.lang:
+
+        return
+        # dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_quiz_form') #in model name replace . with _ Example sale.order become sale_order
+        # return {
+        #     'name':"Quiz",#Name You want to display on wizard
+        #     'view_mode': 'form',
+        #     'view_id': view_id,
+        #     'view_type': 'form',
+        #     'res_model': 'popup.quiz',# With . Example sale.order
+        #     # 'res_model': 'account.chart',# With . Example sale.order
+        #     'type': 'ir.actions.act_window',
+        #     'target': 'new',
+        #     'context':{'haha': 'ejaa'},
+        # }
