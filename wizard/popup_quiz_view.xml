@@ -14,6 +14,12 @@
                             <group>
                             </group>
                         </group>
+                        <group string="SOALSOAL">
+                            <div><button string="Option A" name="answer_quiz" type="object"/></div>
+                            <div><button string="Option C" name="answer_quiz" type="object"/></div>
+                            <div><button string="Option B" name="answer_quiz" type="object"/></div>
+                            <div><button string="Option D" name="answer_quiz" type="object"/></div>
+                        </group>
                     </sheet>
                     <footer>
                         <button name="take_quiz" string="Take Quiz" type="object"/>
