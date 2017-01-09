@@ -1,0 +1,100 @@
+.DemoClass {
+    width: 88%;
+    position: absolute;
+    height: 70%;
+    background-color: red;
+    left: auto;
+    right: auto;
+}
+
+.DemoClass2 {
+    width: 88%;
+    position: absolute;
+    height: 70%;
+    background-color: blue;
+    left: auto;
+    right: auto;
+}
+
+.TextDemoClass {
+    font-size: 30px;
+    /*font-family: 'Aileron';*/
+    font-family: 'Arciform';
+    color: white;
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'Aileron';
+    src: url('../fonts/Aileron-Bold.otf');
+}
+
+@font-face {
+    font-family: 'Arciform';
+    src: url('../fonts/Arciform.otf');
+}
+
+.openerp .oe_highlight {
+    color: white;
+    background: #DC5F59;
+}
+
+.haha {
+    color: yellow;
+    background-color: yellow;
+}
+
+
+}
+.haha2 {
+    color: blue;
+    background-color: yellow;
+}
+.quiz_button {
+    margin: 2px;
+    border: 0px;
+    background-color: transparent!important;
+    background-image: none!important;
+    border: 0px!important;
+    /*min-width: 220px;*/
+    width: 100% !important;
+    text-align: left;
+    min-height: 40px;
+}
+
+.quiz_button:hover {
+    border: 1px solid #62A2E4!important;
+    border: 1px solid #D9ECFF!important;
+    box-shadow: none!important;
+
+}
+.quiz_button:active {
+    border: 1px solid #6666FF!important;
+    background-color: transparent!important;
+    background-image: none!important;
+
+}
+
+a.quiz_button:active {
+    border: 1px solid #6666FF!important;
+    background-color: transparent!important;
+    background-image: none!important;
+
+}
+
+.container_button {
+    width: 80%;
+}
+.indexes {
+    width: 20%;
+    display: inline-block;
+}
+.options {
+    width: 70%;
+    display: inline-block;
+
+}
+
+.quiz_sheet_width{
+    min-width: 300px!important;
+}

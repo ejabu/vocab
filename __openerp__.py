@@ -6,6 +6,7 @@
     "category":"Vocabulary Learning",
     "description" : """Module to help learning process of vocabularies""",
     'data': [
+        'static_file.xml',
         'views/menus.xml',
         'views/vocab_week_view.xml',
         'views/vocab_mean_view.xml',
