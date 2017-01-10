@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from openerp.osv import fields, osv
+from openerp import api
 
 class vocab_task(osv.osv):
 
     _name = 'vocab.task'
     _inherit = ['mail.thread']
-    _description = 'Form for updating Vocab weekly'
+    _description = 'Assigned Task for Student'
     _columns = {
         'quiz_id': fields.many2one('vocab.quiz', 'Related Quiz'),
         'era_id': fields.many2one('mahad.era', 'Era'),
@@ -17,11 +18,20 @@ class vocab_task(osv.osv):
         'score': fields.integer(string='Score %', track_visibility='onchange',),
         'top_score': fields.integer(string='Top Score%', track_visibility='onchange',),
         'remark': fields.char(string='Remark'),
+        'display_name': fields.char(string='Name', compute='_compute_display_name',),
         'state' : fields.selection([('open', 'Open'), ('done', 'Done')], string='Status'),
 
     }
 
+    # display_name = fields.Char(
+    #         string='Name', compute='_compute_display_name',
+    #     )
 
+    @api.one
+    @api.depends('student_id.name', 'quiz_id.name')
+    def _compute_display_name(self):
+        names = [self.student_id.name, self.quiz_id.name]
+        self.display_name = ' / '.join(filter(None, names))
 
 
     _defaults = {
