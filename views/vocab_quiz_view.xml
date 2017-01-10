@@ -46,9 +46,9 @@
                                     <tree string="Assigned" editable="bottom">
                                         <field name="era_id"/>
                                         <field name="student_id"/>
-                                        <field name="done_aging"/>
-                                        <field name="score"/>
-                                        <field name="remark"/>
+                                        <field name="done_aging" readonly="1"/>
+                                        <field name="score" readonly="1"/>
+                                        <field name="remark" readonly="1"/>
                                         <field name="state" readonly="1"/>
                                     </tree>
                                 </field>

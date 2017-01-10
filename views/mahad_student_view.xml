@@ -15,6 +15,22 @@
         <menuitem id="sub_mahad_student" sequence="20" name="Student List"
             parent="vole_master_data" action="mahad_student_action"/>
 
+
+        <!-- Tree view for the menuitem -->
+        <record id="mahad_student_tree" model="ir.ui.view">
+            <field name="name">mahad.student.tree</field>
+            <field name="model">mahad.student</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="class_id"/>
+                    <field name="name"/>
+                    <field name="nick"/>
+                    <field name="nim"/>
+                    <field name="era_id"/>
+                </tree>
+            </field>
+        </record>
+
         <!-- Form view for the menuitem -->
         <record id="mahad_student_form" model="ir.ui.view">
             <field name="name">mahad.student.form</field>
