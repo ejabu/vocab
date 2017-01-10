@@ -34,10 +34,22 @@ class popup_quiz(osv.osv_memory):
         question_index=int(context['question_index'])
 
         context['question_index']=int(context['question_index']) + 1
-        import ipdb; ipdb.set_trace()
+        if 'evaluation' not in context:
+            context['evaluation']=[]
+        if question_index+1 > context['total_question']:
+            print "question_index > total_question"
+            if answer_index == context['question_ids'][question_index - 1]:
+                context['evaluation'].append("1")
+            else:
+                context['evaluation'].append("0")
+            import collections
+            final_score = collections.Counter(context['evaluation'])['1'] * 100 / context['total_question']
+            import ipdb; ipdb.set_trace()
+            return
         if answer_index == context['question_ids'][question_index - 1]:
+            context['evaluation'].append("1")
             return {
-                'name':"Quiz Jawaban Benar",
+                'name':"Quiz Jawaban Benar "+ str(question_index),
                 'view_mode': 'form',
                 'view_id': view_id,
                 'view_type': 'form',
@@ -47,8 +59,9 @@ class popup_quiz(osv.osv_memory):
                 'context': context,
             }
         else:
+            context['evaluation'].append("0")
             return {
-                'name':"Quiz Jawaban Salah",
+                'name':"Quiz Jawaban Salah "+ str(question_index),
                 'view_mode': 'form',
                 'view_id': view_id,
                 'view_type': 'form',
@@ -68,9 +81,6 @@ class popup_quiz(osv.osv_memory):
         question_ids = context["question_ids"]
         question_index = context["question_index"]
         total_question = context["total_question"]
-        if question_index > total_question:
-            print "question_index > total_question"
-            return
         question_to_ask = question_ids[question_index-1]
         removed_vocab_covered_ids.remove(question_to_ask)
         random.shuffle(removed_vocab_covered_ids)
