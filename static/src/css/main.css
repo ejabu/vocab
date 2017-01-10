@@ -1,57 +1,33 @@
-.DemoClass {
-    width: 88%;
-    position: absolute;
-    height: 70%;
-    background-color: red;
-    left: auto;
-    right: auto;
+@font-face {
+    font-family: 'English';
+    src: url('../fonts/Roboto-Bold.ttf');
 }
 
-.DemoClass2 {
-    width: 88%;
-    position: absolute;
-    height: 70%;
-    background-color: blue;
-    left: auto;
-    right: auto;
+@font-face {
+    font-family: 'Arabic';
+    src: url('../fonts/UthmanicHafs1 Ver09_1.ttf');
 }
 
-.TextDemoClass {
-    font-size: 30px;
-    /*font-family: 'Aileron';*/
-    font-family: 'Arciform';
-    color: white;
+.question_center {
+    font-size: 50px;
     text-align: center;
 }
 
-@font-face {
-    font-family: 'Aileron';
-    src: url('../fonts/Aileron-Bold.otf');
+.arabic{
+    font-family: 'Arabic';
+}
+.english{
+    font-family: 'English';
 }
 
-@font-face {
-    font-family: 'Arciform';
-    src: url('../fonts/Arciform.otf');
-}
 
 .openerp .oe_highlight {
     color: white;
     background: #DC5F59;
 }
-
-.haha {
-    color: yellow;
-    background-color: yellow;
-}
-
-
-}
-.haha2 {
-    color: blue;
-    background-color: yellow;
-}
 .quiz_button {
     margin: 2px;
+    font-size:18px!important;
     border: 0px;
     background-color: transparent!important;
     background-image: none!important;
@@ -68,19 +44,6 @@
     box-shadow: none!important;
 
 }
-.quiz_button:active {
-    border: 1px solid #6666FF!important;
-    background-color: transparent!important;
-    background-image: none!important;
-
-}
-
-a.quiz_button:active {
-    border: 1px solid #6666FF!important;
-    background-color: transparent!important;
-    background-image: none!important;
-
-}
 
 .container_button {
     width: 80%;
@@ -94,7 +57,6 @@ a.quiz_button:active {
     display: inline-block;
 
 }
-
 .quiz_sheet_width{
     min-width: 300px!important;
 }

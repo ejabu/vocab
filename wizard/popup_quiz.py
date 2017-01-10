@@ -98,6 +98,7 @@ class popup_quiz(osv.osv_memory):
         view_arch = result['arch']
         vocab_mean_doc = vocab_mean_obj.browse(cr,uid, question_to_ask, context=None)
         view_arch = view_arch.replace('SOALSOAL',vocab_mean_doc[question_lang])
+        view_arch = view_arch.replace('question_center','question_center ' + question_lang)
         for option in range(0,4):
             vocab_mean_doc = vocab_mean_obj.browse(cr,uid, mixed_options[option], context=None)
             if question_to_ask == mixed_options[option]:
@@ -106,4 +107,6 @@ class popup_quiz(osv.osv_memory):
             else:
                 view_arch = view_arch.replace(['Option A','Option B','Option C','Option D'][option],vocab_mean_doc[answer_lang])
         result['arch']= view_arch
+        view_arch = view_arch.replace('quiz_button','quiz_button ' + question_lang)
+
         return result
