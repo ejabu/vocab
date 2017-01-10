@@ -30,31 +30,22 @@ class popup_quiz(osv.osv_memory):
     def answer_quiz(self, cr, uid, ids, context=None):
         question_index = self.browse(cr,uid, ids, context).question_index
         dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_quiz_form')
+        answer_index=int(context['answer_index'])
+        question_index=int(context['question_index'])
+
         context['question_index']=int(context['question_index']) + 1
-        if 'correct' in context:
-            if context['correct'] == "true":
-                context['correct'] = "false"
-                return {
-                    'name':"Quiz Jawaban Benar",
-                    'view_mode': 'form',
-                    'view_id': view_id,
-                    'view_type': 'form',
-                    'res_model': 'popup.quiz',
-                    'type': 'ir.actions.act_window',
-                    'target': 'new',
-                    'context': context,
-                }
-            else:
-                return {
-                    'name':"Quiz Jawaban Salah",
-                    'view_mode': 'form',
-                    'view_id': view_id,
-                    'view_type': 'form',
-                    'res_model': 'popup.quiz',
-                    'type': 'ir.actions.act_window',
-                    'target': 'new',
-                    'context': context,
-                }
+        import ipdb; ipdb.set_trace()
+        if answer_index == context['question_ids'][question_index - 1]:
+            return {
+                'name':"Quiz Jawaban Benar",
+                'view_mode': 'form',
+                'view_id': view_id,
+                'view_type': 'form',
+                'res_model': 'popup.quiz',
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+                'context': context,
+            }
         else:
             return {
                 'name':"Quiz Jawaban Salah",
@@ -78,7 +69,7 @@ class popup_quiz(osv.osv_memory):
         question_index = context["question_index"]
         total_question = context["total_question"]
         if question_index > total_question:
-            print "done"
+            print "question_index > total_question"
             return
         question_to_ask = question_ids[question_index-1]
         removed_vocab_covered_ids.remove(question_to_ask)
@@ -101,11 +92,10 @@ class popup_quiz(osv.osv_memory):
         view_arch = view_arch.replace('question_center','question_center ' + question_lang)
         for option in range(0,4):
             vocab_mean_doc = vocab_mean_obj.browse(cr,uid, mixed_options[option], context=None)
-            if question_to_ask == mixed_options[option]:
-                # print ['Option A','Option B','Option C','Option D'][option]
-                view_arch = view_arch.replace(['Option A','Option B','Option C','Option D'][option],vocab_mean_doc[answer_lang]+'''" context="{'correct':'true'} ''')
-            else:
-                view_arch = view_arch.replace(['Option A','Option B','Option C','Option D'][option],vocab_mean_doc[answer_lang])
+            context_to_append = '''" context="{'answer_index':'ANSWER_INDEX'} '''
+            context_to_append = context_to_append.replace('ANSWER_INDEX', str(mixed_options[option]))
+            view_arch = view_arch.replace(['Option A','Option B','Option C','Option D'][option],vocab_mean_doc[answer_lang]+context_to_append)
+
         result['arch']= view_arch
         view_arch = view_arch.replace('quiz_button','quiz_button ' + question_lang)
 

@@ -40,7 +40,7 @@
 
 .quiz_button:hover {
     border: 1px solid #62A2E4!important;
-    border: 1px solid #D9ECFF!important;
+    border: 2px solid #D9ECFF!important;
     box-shadow: none!important;
 
 }
