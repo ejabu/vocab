@@ -7,11 +7,11 @@ class mahad_student(osv.osv):
     _name = 'mahad.student'
     _description = 'Database of Student'
     _columns = {
-        'name': fields.char(string='Name'),
-        'nick': fields.char(string='Nick'),
-        'nim': fields.char(string='NIM'),
-        'era_id': fields.many2one('mahad.era', 'Era'),
-        'class_id': fields.many2one('mahad.class', 'Class'),
+        'name': fields.char(string='Name', required='true'),
+        'nick': fields.char(string='Nick', required='true'),
+        'nim': fields.char(string='NIM', required='true'),
+        'era_id': fields.many2one('mahad.era', 'Era', required='true'),
+        'class_id': fields.many2one('mahad.class', 'Class', required='true'),
     }
 class mahad_era(osv.osv):
 

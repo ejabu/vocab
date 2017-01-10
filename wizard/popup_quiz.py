@@ -25,7 +25,6 @@ class popup_quiz(osv.osv_memory):
             'type': 'ir.actions.act_window',
             'target': 'new',
             'nodestroy': False,
-            'context':{'haha': 'ejaa'},
         }
     def answer_quiz(self, cr, uid, ids, context=None):
         question_index = self.browse(cr,uid, ids, context).question_index
@@ -44,12 +43,22 @@ class popup_quiz(osv.osv_memory):
                 context['evaluation'].append("0")
             import collections
             final_score = collections.Counter(context['evaluation'])['1'] * 100 / context['total_question']
-            import ipdb; ipdb.set_trace()
-            return
+            context['final_score']=final_score
+            dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_result_form')
+            return {
+                'name':"Congratulations, Task Completed!",
+                'view_mode': 'form',
+                'view_id': view_id,
+                'view_type': 'form',
+                'res_model': 'popup.result',
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+                'context': context,
+            }
         if answer_index == context['question_ids'][question_index - 1]:
             context['evaluation'].append("1")
             return {
-                'name':"Quiz Jawaban Benar "+ str(question_index),
+                'name':"Quiz",
                 'view_mode': 'form',
                 'view_id': view_id,
                 'view_type': 'form',
@@ -61,7 +70,7 @@ class popup_quiz(osv.osv_memory):
         else:
             context['evaluation'].append("0")
             return {
-                'name':"Quiz Jawaban Salah "+ str(question_index),
+                'name':"Quiz",
                 'view_mode': 'form',
                 'view_id': view_id,
                 'view_type': 'form',

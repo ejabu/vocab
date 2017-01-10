@@ -24,9 +24,6 @@ class vocab_task(osv.osv):
         'state': 'open',
     }
     def take_quiz(self, cr, uid, ids, context=None):
-        # self.write(cr, uid, ids, {'state': 'close'}, context=context)
-        # return
-        # import ipdb; ipdb.set_trace()
         import random;
         current_task = self.browse(cr, uid, ids, context=None)
         question_ids = []
@@ -50,32 +47,18 @@ class vocab_task(osv.osv):
             'vocab_covered_ids' : vocab_covered_ids,
             'question_index' : 1,
             'total_question' : len(question_ids),
+            'student_id' : current_task.student_id.id,
+            'student_name' : current_task.student_id.nick,
+            'quiz_id' : current_task.quiz_id.id,
+            'task_id' : current_task.id,
         }
-        # import ipdb; ipdb.set_trace()
-        # uom_obj = self.pool.get('vocab.quiz')
-
-        #Generate All Possible False Options
-
-
-
-        # company_id = company_id or False
-        # local_context = dict(context, company_id=company_id, force_company=company_id, pricelist=pricelist_id)
-        #
-        # if not product:
-        #     return {'value': {'price_unit': 0.0}, 'domain':{'product_uom':[]}}
-        #     if partner_id:
-        #         part = self.pool.get('res.partner').browse(cr, uid, partner_id, context=local_context)
-        #         if part.lang:
-
-        # return
         dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_quiz_form')
         return {
-            'name':"Quiz",#Name You want to display on wizard
+            'name':"Quiz",
             'view_mode': 'form',
             'view_id': view_id,
             'view_type': 'form',
-            'res_model': 'popup.quiz',# With . Example sale.order
-            # 'res_model': 'account.chart',# With . Example sale.order
+            'res_model': 'popup.quiz',
             'type': 'ir.actions.act_window',
             'target': 'new',
             'context':pass_context,
