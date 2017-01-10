@@ -1,7 +1,7 @@
 {
     "name": "Vocabulary Learning",
     "version": "1.0",
-    "depends": ['base'],
+    "depends": ['base', 'mail'],
     'author': 'Muhammad Fahreza',
     "category":"Vocabulary Learning",
     "description" : """Module to help learning process of vocabularies""",

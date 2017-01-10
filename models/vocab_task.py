@@ -5,6 +5,7 @@ from openerp.osv import fields, osv
 class vocab_task(osv.osv):
 
     _name = 'vocab.task'
+    _inherit = ['mail.thread']
     _description = 'Form for updating Vocab weekly'
     _columns = {
         'quiz_id': fields.many2one('vocab.quiz', 'Related Quiz'),
@@ -13,11 +14,14 @@ class vocab_task(osv.osv):
         'done_aging': fields.integer(string='Done Aging'),
         'due_date': fields.date(string='Due Date'),
         'avg_score': fields.integer(string='Avg Score%'),
-        'score': fields.integer(string='Score %'),
+        'score': fields.integer(string='Score %', track_visibility='onchange',),
+        'top_score': fields.integer(string='Top Score%', track_visibility='onchange',),
         'remark': fields.char(string='Remark'),
         'state' : fields.selection([('open', 'Open'), ('done', 'Done')], string='Status'),
 
     }
+
+
 
 
     _defaults = {
