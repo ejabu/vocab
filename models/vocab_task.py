@@ -50,7 +50,7 @@ class vocab_task(osv.osv):
             'student_id' : current_task.student_id.id,
             'student_name' : current_task.student_id.nick,
             'quiz_id' : current_task.quiz_id.id,
-            'task_id' : current_task.id,
+            # 'task_id' : current_task.id,
         }
         dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'popup_quiz_form')
         return {
