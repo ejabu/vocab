@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="module_categ_vocab" model="ir.module.category">
+            <field name="name">School</field>
+            <field name="description"></field>
+            <field name="sequence">100</field>
+        </record>
+
+        <record id="vc_student" model="res.groups">
+            <field name="name">Student</field>
+            <field name="category_id" ref="module_categ_vocab"/>
+        </record>
+
+        <record id="vc_teacher" model="res.groups">
+            <field name="name">Teacher</field>
+            <field name="category_id" ref="module_categ_vocab"/>
+            <field name="implied_ids" eval="[(4, ref('vc_student'))]"/>
+        </record>
+    </data>
+</openerp>

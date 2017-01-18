@@ -16,6 +16,8 @@ class popup_result(osv.osv_memory):
         self.pool.get('vocab.task').write(cr, uid, context['active_id'], {'state':'done', 'score': final_score} )
         if vocab_task_doc.top_score < final_score:
             self.pool.get('vocab.task').write(cr, uid, context['active_id'], {'top_score': final_score} )
+
+        
         view_arch = result['arch']
         view_arch = view_arch.replace('SELAMAT','Congrats you have Done this , your score is  ' + str(final_score))
         result['arch']= view_arch

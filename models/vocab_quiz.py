@@ -48,6 +48,6 @@ class vocab_quiz_line(models.Model):
     _description = 'Quiz to create'
 
     week_id = fields.Many2one('vocab.week', 'Week Covered')
-    day = fields.Integer(string='day')
+    day = fields.Integer(string='Day')
     frequency = fields.Integer(string='Frequency')
     quiz_id = fields.Many2one('vocab.quiz', 'Quiz ID')
