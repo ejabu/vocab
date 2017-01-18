@@ -32,7 +32,6 @@ class vocab_quiz(models.Model):
     @api.one
     @api.depends('task_ids')
     def _compute_average_score(self):
-        # import ipdb; ipdb.set_trace()
         total_score = 0
         person = 0
         for task_id in self.task_ids:

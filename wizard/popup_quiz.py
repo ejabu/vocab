@@ -108,7 +108,6 @@ class popup_quiz(osv.osv_memory):
             vocab_mean_obj = self.pool.get('vocab.mean')
             view_arch = result['arch']
             vocab_mean_doc = vocab_mean_obj.browse(cr,uid, question_to_ask, context=None)
-            # import ipdb; ipdb.set_trace()
             view_arch = view_arch.replace('SOALSOAL', vocab_mean_doc[str(question_lang)])
             view_arch = view_arch.replace('question_center','question_center ' + question_lang)
             for option in range(0,4):
@@ -124,5 +123,4 @@ class popup_quiz(osv.osv_memory):
 
             pass
         except Exception as e:
-            import ipdb; ipdb.set_trace()
             raise

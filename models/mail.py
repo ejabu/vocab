@@ -6,5 +6,4 @@ class mail_message(models.Model):
 
     @api.v7
     def _get_default_from(self, cr, uid, context=None):
-        import ipdb; ipdb.set_trace()
         return formataddr(('Logger', 'Logger@gmail.com'))
