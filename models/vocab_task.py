@@ -24,7 +24,7 @@ class vocab_task(models.Model):
     due_date=fields.Date(string='Due Date')
     avg_score = fields.Integer(string='Average Score %', compute='_compute_avg_score', store=False)
     score = fields.Integer(string='Score %', track_visibility='always',)
-    top_score = fields.Integer(string='Top Score %', track_visibility='always',)
+    top_score = fields.Integer(string='Top Score %', track_visibility='onchange',)
     remark=fields.Char(string='Remark')
     display_name=fields.Char(string='Name', compute='_compute_display_name',)
     state=fields.Selection([('open', 'Open'), ('done', 'Done')], string='Status')

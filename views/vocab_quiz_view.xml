@@ -37,11 +37,11 @@
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="published_date"/>
-                                <field name="due_date"/>
+                                <field name="published_date" required="1"/>
+                                <field name="due_date" required="1"/>
                             </group>
                             <group>
-                                <field name="average_score" readonly="0"/>
+                                <field name="average_score" readonly="1"/>
                                 <field name="total_question" readonly="1"/>
                             </group>
                         </group>

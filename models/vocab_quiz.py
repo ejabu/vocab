@@ -15,8 +15,8 @@ class vocab_quiz(models.Model):
     name=fields.Char(string='ID')
     average_score = fields.Integer(string='Average Score %', compute='_compute_average_score')
     total_question = fields.Integer(string='Total Questions', compute='_compute_total_question', store=True)
-    published_date=fields.Date(string='Published Date' , default=today)
-    due_date=fields.Date(string='Due Date')
+    published_date=fields.Date(string='Published Date' , default=today, required='true')
+    due_date=fields.Date(string='Due Date', required='true')
 
     line_ids=fields.One2many('vocab.quiz.line', 'quiz_id', 'Material Covered')
     task_ids=fields.One2many('vocab.task', 'quiz_id', 'Assigned Students')
@@ -38,7 +38,11 @@ class vocab_quiz(models.Model):
         for task_id in self.task_ids:
             person=person+1
             total_score=total_score + task_id.top_score
-        self.average_score = total_score/person
+        if person == 0:
+            self.average_score = 0
+        else:
+            self.average_score = total_score/person
+
 
 
 
