@@ -60,3 +60,7 @@
 .quiz_sheet_width{
     min-width: 300px!important;
 }
+
+.oe_share{
+    display: none!important;
+}

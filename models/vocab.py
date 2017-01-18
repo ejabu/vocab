@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import fields, osv
 from openerp import api
+from openerp import models, fields
+from openerp.osv import fields as Fields
 
-class vocab_mean(osv.osv):
+class vocab_mean(models.Model):
 
     _name = 'vocab.mean'
     _description = 'Form for updating Vocab weekly'
-    _columns = {
-        'name': fields.char(string='ID'),
-        'day': fields.integer(string='Day'),
-        'english': fields.char(string='English'),
-        'arabic': fields.char(string='Arabic'),
-        'published_date': fields.date(string='Published Date'),
-        'week_id': fields.many2one('vocab.week', 'Week', readonly=True),
-    }
+    name=fields.Char(string='ID')
+    english=fields.Char(string='English', required=True)
+    arabic=fields.Char(string='Arabic', required=True)
+    published_date=fields.Date(string='Published Date')
+    day = fields.Integer(string='Day')
+    week_id=fields.Many2one('vocab.week', 'Week', readonly=True)

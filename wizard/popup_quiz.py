@@ -81,41 +81,48 @@ class popup_quiz(osv.osv_memory):
             }
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context={}, toolbar=False):
-        import random
-        result = super(popup_quiz, self).fields_view_get(cr, uid, view_id, view_type, context=context, toolbar=toolbar)
+        try:
+            import random
+            result = super(popup_quiz, self).fields_view_get(cr, uid, view_id, view_type, context=context, toolbar=toolbar)
 
-        week_covered_ids = context["week_covered_ids"]
-        vocab_covered_ids = context["vocab_covered_ids"]
-        removed_vocab_covered_ids = context["vocab_covered_ids"]
-        question_ids = context["question_ids"]
-        question_index = context["question_index"]
-        total_question = context["total_question"]
-        question_to_ask = question_ids[question_index-1]
-        removed_vocab_covered_ids.remove(question_to_ask)
-        random.shuffle(removed_vocab_covered_ids)
-        false_option = removed_vocab_covered_ids[:3]
+            week_covered_ids = context["week_covered_ids"]
+            vocab_covered_ids = context["vocab_covered_ids"]
+            removed_vocab_covered_ids = context["vocab_covered_ids"]
+            question_ids = context["question_ids"]
+            question_index = context["question_index"]
+            total_question = context["total_question"]
+            question_to_ask = question_ids[question_index-1]
+            removed_vocab_covered_ids.remove(question_to_ask)
+            random.shuffle(removed_vocab_covered_ids)
+            false_option = removed_vocab_covered_ids[:3]
 
-        false_option.append(question_to_ask)
-        mixed_options = false_option
-        random.shuffle(mixed_options)
+            false_option.append(question_to_ask)
+            mixed_options = false_option
+            random.shuffle(mixed_options)
 
 
-        lang_index = random.randint(0,1)
-        question_lang = ['english','arabic'][lang_index]
-        answer_lang = ['english','arabic'][0 if lang_index == 1 else 1]
+            lang_index = random.randint(0,1)
+            question_lang = ['english','arabic'][lang_index]
+            answer_lang = ['english','arabic'][0 if lang_index == 1 else 1]
 
-        vocab_mean_obj = self.pool.get('vocab.mean')
-        view_arch = result['arch']
-        vocab_mean_doc = vocab_mean_obj.browse(cr,uid, question_to_ask, context=None)
-        view_arch = view_arch.replace('SOALSOAL',vocab_mean_doc[question_lang])
-        view_arch = view_arch.replace('question_center','question_center ' + question_lang)
-        for option in range(0,4):
-            vocab_mean_doc = vocab_mean_obj.browse(cr,uid, mixed_options[option], context=None)
-            context_to_append = '''" context="{'answer_index':'ANSWER_INDEX'} '''
-            context_to_append = context_to_append.replace('ANSWER_INDEX', str(mixed_options[option]))
-            view_arch = view_arch.replace(['Option A','Option B','Option C','Option D'][option],vocab_mean_doc[answer_lang]+context_to_append)
+            vocab_mean_obj = self.pool.get('vocab.mean')
+            view_arch = result['arch']
+            vocab_mean_doc = vocab_mean_obj.browse(cr,uid, question_to_ask, context=None)
+            # import ipdb; ipdb.set_trace()
+            view_arch = view_arch.replace('SOALSOAL', vocab_mean_doc[str(question_lang)])
+            view_arch = view_arch.replace('question_center','question_center ' + question_lang)
+            for option in range(0,4):
+                vocab_mean_doc = vocab_mean_obj.browse(cr,uid, mixed_options[option], context=None)
+                context_to_append = '''" context="{'answer_index':'ANSWER_INDEX'} '''
+                context_to_append = context_to_append.replace('ANSWER_INDEX', str(mixed_options[option]))
+                view_arch = view_arch.replace(['Option A','Option B','Option C','Option D'][option],vocab_mean_doc[answer_lang]+context_to_append)
 
-        result['arch']= view_arch
-        view_arch = view_arch.replace('quiz_button','quiz_button ' + question_lang)
+            result['arch']= view_arch
+            view_arch = view_arch.replace('quiz_button','quiz_button ' + question_lang)
 
-        return result
+            return result
+
+            pass
+        except Exception as e:
+            import ipdb; ipdb.set_trace()
+            raise

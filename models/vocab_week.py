@@ -12,7 +12,7 @@ class vocab_week(models.Model):
     name=fields.Char(string='Week Name')
     published_date=fields.Date(string='Published Date')
     vocab_ids=fields.One2many('vocab.mean', 'week_id', 'Vocabularies')
-    total_vocab = fields.Integer(string='Total Vocab', compute='_compute_total_vocab', store=True)
+    total_vocab = fields.Integer(string='Total Vocabularies', compute='_compute_total_vocab', store=True)
 
     @api.one
     @api.depends('vocab_ids')

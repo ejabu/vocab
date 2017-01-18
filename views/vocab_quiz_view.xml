@@ -14,6 +14,19 @@
 
         <menuitem id="sub_vocab_quiz" sequence="20" name="Quiz Form" parent="vole_teacher" action="vocab_quiz_action"/>
 
+        <!-- Tree view for the menuitem -->
+        <record id="vocab_quiz_tree" model="ir.ui.view">
+            <field name="name">vocab.quiz.tree</field>
+            <field name="model">vocab.quiz</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="name"/>
+                    <field name="published_date"/>
+                    <field name="due_date"/>
+                    <field name="total_question"/>
+                </tree>
+            </field>
+        </record>
         <!-- Form view for the menuitem -->
         <record id="vocab_quiz_form" model="ir.ui.view">
             <field name="name">vocab.quiz.form</field>
@@ -25,10 +38,11 @@
                             <group>
                                 <field name="name"/>
                                 <field name="published_date"/>
+                                <field name="due_date"/>
                             </group>
                             <group>
-                                <field name="average_score"/>
-                                <field name="total_question"/>
+                                <field name="average_score" readonly="0"/>
+                                <field name="total_question" readonly="1"/>
                             </group>
                         </group>
                         <notebook>
@@ -44,7 +58,7 @@
                             <page string="Assigned Students">
                                 <field name="task_ids">
                                     <tree string="Assigned" editable="bottom">
-                                        <field name="era_id"/>
+                                        <field name="era_id" readonly="1"/>
                                         <field name="student_id"/>
                                         <field name="done_aging" readonly="1"/>
                                         <field name="score" readonly="1"/>

@@ -1,34 +1,27 @@
 # -*- coding: utf-8 -*-
 
+from openerp.osv import fields, osv
 from openerp import api
-from openerp import models, fields
-from openerp.osv import fields as Fields
 
-class vocab_task(models.Model):
+class vocab_task(osv.osv):
 
     _name = 'vocab.task'
     _inherit = ['mail.thread']
     _description = 'Assigned Task for Student'
+    _columns = {
+        'quiz_id': fields.many2one('vocab.quiz', 'Related Quiz'),
+        'era_id': fields.many2one('mahad.era', 'Era'),
+        'student_id': fields.many2one('mahad.student', 'Name'),
+        'done_aging': fields.integer(string='Done Aging'),
+        'due_date': fields.date(string='Due Date'),
+        'avg_score': fields.integer(string='Avg Score%', compute='_compute_avg_score', store=False),
+        'score': fields.integer(string='Score %', track_visibility='onchange',),
+        'top_score': fields.integer(string='Top Score%', track_visibility='onchange',),
+        'remark': fields.char(string='Remark'),
+        'display_name': fields.char(string='Name', compute='_compute_display_name',),
+        'state' : fields.selection([('open', 'Open'), ('done', 'Done')], string='Status'),
 
-    # name=fields.Char(string='ID')
-    # average_score = fields.Integer(string='Average Score %')
-    # due_date=fields.Date(string='Due Date')
-    # task_ids=fields.One2many('vocab.task', 'quiz_id', 'Assigned Students')
-    # task_ids=fields.Many2One('vocab.task', 'quiz_id', 'Assigned Students')
-
-    quiz_id=fields.Many2one('vocab.quiz', 'Related Quiz')
-    era_id=fields.Many2one('mahad.era', 'Era', compute='_fetch_era', store=True)
-    student_id=fields.Many2one('mahad.student', 'Name')
-    done_aging = fields.Integer(string='Done Aging')
-    due_date=fields.Date(string='Due Date')
-    avg_score = fields.Integer(string='Average Score %', compute='_compute_avg_score', store=False)
-    score = fields.Integer(string='Score %', track_visibility='onchange',)
-    top_score = fields.Integer(string='Top Score %', track_visibility='onchange',)
-    remark=fields.Char(string='Remark')
-    display_name=fields.Char(string='Name', compute='_compute_display_name',)
-    state=fields.Selection([('open', 'Open'), ('done', 'Done')], string='Status')
-
-
+    }
 
     # display_name = fields.Char(
     #         string='Name', compute='_compute_display_name',
@@ -37,18 +30,17 @@ class vocab_task(models.Model):
     @api.one
     @api.depends('student_id.name', 'quiz_id.name')
     def _compute_display_name(self):
+        import ipdb; ipdb.set_trace()
+
         names = [self.student_id.name, self.quiz_id.name]
         self.display_name = ' / '.join(filter(None, names))
 
     @api.one
     @api.depends('quiz_id.average_score')
     def _compute_avg_score(self):
-        self.avg_score = self.quiz_id.average_score
-
-    @api.one
-    @api.depends('student_id.era_id')
-    def _fetch_era(self):
-        self.era_id = self.student_id.era_id
+        import ipdb; ipdb.set_trace()
+        names = [self.student_id.name, self.quiz_id.name]
+        self.display_name = ' / '.join(filter(None, names))
 
 
     _defaults = {
