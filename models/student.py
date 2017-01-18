@@ -12,6 +12,7 @@ class mahad_student(osv.osv):
         'nim': fields.char(string='NIM', required='true'),
         'era_id': fields.many2one('mahad.era', 'Era', required='true'),
         'class_id': fields.many2one('mahad.class', 'Class', required='true'),
+        'user_id': fields.many2one('res.users', 'Related User', required='true'),
     }
     _defaults = {
         'nick': 'fulan',

@@ -47,6 +47,7 @@
                             <group>
                                 <field name="class_id"/>
                                 <field name="era_id"/>
+                                <field name="user_id"/>
                             </group>
                         </group>
 

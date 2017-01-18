@@ -19,11 +19,12 @@ class vocab_task(models.Model):
     quiz_id=fields.Many2one('vocab.quiz', 'Related Quiz')
     era_id=fields.Many2one('mahad.era', 'Era', compute='_fetch_era', store=True)
     student_id=fields.Many2one('mahad.student', 'Name')
-    done_aging = fields.Integer(string='Done Aging')
+    done_aging = fields.Integer(string='Done Aging', track_visibility='always',)
+    test_taken = fields.Integer(string='Test Taken', track_visibility='always',)
     due_date=fields.Date(string='Due Date')
     avg_score = fields.Integer(string='Average Score %', compute='_compute_avg_score', store=False)
-    score = fields.Integer(string='Score %', track_visibility='onchange',)
-    top_score = fields.Integer(string='Top Score %', track_visibility='onchange',)
+    score = fields.Integer(string='Score %', track_visibility='always',)
+    top_score = fields.Integer(string='Top Score %', track_visibility='always',)
     remark=fields.Char(string='Remark')
     display_name=fields.Char(string='Name', compute='_compute_display_name',)
     state=fields.Selection([('open', 'Open'), ('done', 'Done')], string='Status')
@@ -53,6 +54,7 @@ class vocab_task(models.Model):
 
     _defaults = {
         'state': 'open',
+        'test_taken': 0,
     }
     def take_quiz(self, cr, uid, ids, context=None):
         import random;
