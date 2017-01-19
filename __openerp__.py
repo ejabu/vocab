@@ -18,6 +18,7 @@
         'views/mahad_era_view.xml',
         'wizard/popup_quiz_view.xml',
         'wizard/popup_result_view.xml',
+        'wizard/assign_students_view.xml',
     ],
     'demo':[
             #files containing demo data

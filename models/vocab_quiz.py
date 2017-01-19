@@ -18,7 +18,7 @@ class vocab_quiz(models.Model):
     published_date=fields.Date(string='Published Date' , default=today, required='true')
     due_date=fields.Date(string='Due Date', required='true')
 
-    line_ids=fields.One2many('vocab.quiz.line', 'quiz_id', 'Material Covered')
+    line_ids=fields.One2many('vocab.quiz.line', 'quiz_id', 'Material Covered', copy=True)
     task_ids=fields.One2many('vocab.task', 'quiz_id', 'Assigned Students')
 
     @api.one
@@ -42,8 +42,33 @@ class vocab_quiz(models.Model):
         else:
             self.average_score = total_score/person
 
+    def assign_student(self, cr, uid, ids, context=None):
+        if not ids: return []
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'vocab', 'assign_student_wizard_form')
+        return {
+            'name':"Multiple Assignment",
+            'view_mode': 'form',
+            'view_id': view_id,
+            'view_type': 'form',
+            'res_model': 'assign.students.wizard',
+            'type': 'ir.actions.act_window',
+            'nodestroy': True,
+            'target': 'new',
+            'domain': '[]',
+            'context': {
+                # 'payment_expected_currency': inv.currency_id.id,
+                # 'default_partner_id': self.pool.get('res.partner')._find_accounting_partner(inv.partner_id).id,
+                # 'default_amount': inv.type in ('out_refund', 'in_refund') and -inv.residual or inv.residual,
+                # 'default_reference': inv.name,
+                # 'close_after_process': True,
+                # 'invoice_type': inv.type,
+                # 'invoice_id': inv.id,
+                # 'default_type': inv.type in ('out_invoice','out_refund') and 'receipt' or 'payment',
+                # 'type': inv.type in ('out_invoice','out_refund') and 'receipt' or 'payment'
+            }
+        }
 
-
+        return
 
 
 class vocab_quiz_line(models.Model):
