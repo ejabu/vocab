@@ -18,8 +18,8 @@ class vocab_quiz(models.Model):
     published_date=fields.Date(string='Published Date' , default=today, required='true')
     due_date=fields.Date(string='Due Date', required='true')
 
-    line_ids=fields.One2many('vocab.quiz.line', 'quiz_id', 'Material Covered', copy=True)
-    task_ids=fields.One2many('vocab.task', 'quiz_id', 'Assigned Students')
+    line_ids=fields.One2many('vocab.quiz.line', 'quiz_id', 'Material Covered', copy=True,  ondelete="cascade" )
+    task_ids=fields.One2many('vocab.task', 'quiz_id', 'Assigned Students',  ondelete="cascade" )
 
     @api.one
     @api.depends('line_ids')
